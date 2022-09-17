@@ -35,8 +35,6 @@ class MainActivity : AppCompatActivity(), CardListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val binding =
-
         supportActionBar?.hide()
         setupRecyclerView()
         hidetext()
