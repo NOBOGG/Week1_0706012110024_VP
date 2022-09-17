@@ -53,6 +53,7 @@ class ListHewanRvAdapter(val listHewan:ArrayList<Hewan>, val cardListener: CardL
                 setPositiveButton("Yes", { dialogInterface, i -> dialogInterface.dismiss()
                     GlobalVar.listDataHewan.removeAt(position)
                     notifyDataSetChanged()
+                    Toast.makeText(it.context, "Hewan Berhasil Di Hapus", Toast.LENGTH_SHORT).show()
                 })
                 alertDialog.show()
             }
