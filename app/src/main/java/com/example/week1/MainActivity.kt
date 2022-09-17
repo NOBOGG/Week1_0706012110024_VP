@@ -70,28 +70,5 @@ class MainActivity : AppCompatActivity(), CardListener {
         binding.listHewanRV.adapter=adapter //Set adapter
     }
 
-    override fun onCardClick(position: Int) {
-        TODO("Not yet implemented")
-    }
-
-    override fun onCardClick(delete: Boolean, position: Int) {
-        if(delete == true){
-            val alertDialog = AlertDialog.Builder(this)
-            alertDialog.apply {
-                setTitle("Konfirmasi")
-                setMessage("Apakah anda yakin untuk mendelete hewan ini?")
-                setNegativeButton("No", { dialogInterface, i -> dialogInterface.dismiss() })
-                setPositiveButton("Yes", { dialogInterface, i -> dialogInterface.dismiss()
-                    listDataHewan.removeAt(position)
-                    adapter.notifyDataSetChanged()
-                })
-                alertDialog.show()
-            }
-        }else{
-            val intent = Intent(this, InputActivity::class.java).putExtra("position",position)
-            startActivity(intent)
-        }
-
-    }
 
 }

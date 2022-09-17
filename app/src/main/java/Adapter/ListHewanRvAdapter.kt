@@ -1,5 +1,6 @@
 package Adapter
 
+import Database.GlobalVar
 import Interface.CardListener
 import Model.Hewan
 import android.app.AlertDialog
@@ -32,15 +33,6 @@ class ListHewanRvAdapter(val listHewan:ArrayList<Hewan>, val cardListener: CardL
             if (data.imageUri.isNotEmpty()){
                 binding.imageViewHewan.setImageURI(Uri.parse(data.imageUri))
             }
-//            itemView.setOnClickListener{
-//                cardlistener1.onCardClick(adapterPosition)
-//            }
-            binding.editButton.setOnClickListener {
-                cardlistener1.onCardClick(false,adapterPosition)
-            }
-            binding.deleteButton.setOnClickListener {
-                cardlistener1.onCardClick(true,adapterPosition)
-            }
         }
     }
 
@@ -52,6 +44,23 @@ class ListHewanRvAdapter(val listHewan:ArrayList<Hewan>, val cardListener: CardL
 
     override fun onBindViewHolder(holder: viewHolder, position: Int) {
         holder.setdata(listHewan[position])
+        holder.binding.deleteButton.setOnClickListener {
+            val alertDialog = AlertDialog.Builder(it.context)
+            alertDialog.apply {
+                setTitle("Konfirmasi")
+                setMessage("Apakah anda yakin untuk mendelete hewan ini?")
+                setNegativeButton("No", { dialogInterface, i -> dialogInterface.dismiss() })
+                setPositiveButton("Yes", { dialogInterface, i -> dialogInterface.dismiss()
+                    GlobalVar.listDataHewan.removeAt(position)
+                    notifyDataSetChanged()
+                })
+                alertDialog.show()
+            }
+        }
+        holder.binding.editButton.setOnClickListener {
+            val intent = Intent(it.context, InputActivity::class.java).putExtra("position",position)
+            it.context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
