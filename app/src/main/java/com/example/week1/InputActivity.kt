@@ -96,18 +96,18 @@ class InputActivity : AppCompatActivity() {
         }
 
         if(hewan.usia!!.isEmpty()){
-            binding.usiaInputlayout.error = "Rating harus diisi 1-10"
+            binding.usiaInputlayout.error = "Usia harus diisi"
             isCompleted=false
         }else if(hewan.usia!!.contains(".*[A-Z].*".toRegex())){
-            binding.usiaInputlayout.error = "Rating tidak boleh ada huruf"
+            binding.usiaInputlayout.error = ""
             isCompleted=false
         }else if(hewan.usia!!.contains(".*[a-z].*".toRegex())){
-            binding.usiaInputlayout.error = "Rating tidak boleh ada huruf"
+            binding.usiaInputlayout.error = ""
             isCompleted=false
         }
 
         if(hewan.jenis!!.isEmpty()){
-            binding.jenisInputlayout.error = "Genre harus diisi"
+            binding.jenisInputlayout.error = "Jenis harus diisi"
             isCompleted=false
         }else{
             binding.jenisInputlayout.error = ""
